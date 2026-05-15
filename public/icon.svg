@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#ffffff"/>
+  <!-- Fork (left) -->
+  <!-- Handle -->
+  <rect x="155" y="280" width="38" height="160" rx="19" fill="#1a1a1a"/>
+  <!-- Tines left -->
+  <rect x="138" y="80" width="18" height="140" rx="9" fill="#1a1a1a"/>
+  <!-- Tines middle -->
+  <rect x="167" y="80" width="18" height="140" rx="9" fill="#1a1a1a"/>
+  <!-- Tines right -->
+  <rect x="196" y="80" width="18" height="140" rx="9" fill="#1a1a1a"/>
+  <!-- Fork neck connecting tines to handle -->
+  <rect x="138" y="200" width="76" height="30" rx="4" fill="#1a1a1a"/>
+  <rect x="148" y="220" width="56" height="30" rx="4" fill="#1a1a1a"/>
+  <!-- Bottom ball -->
+  <ellipse cx="174" cy="438" rx="22" ry="16" fill="#1a1a1a"/>
+
+  <!-- Spoon (right) -->
+  <!-- Handle -->
+  <rect x="320" y="280" width="38" height="160" rx="19" fill="#1a1a1a"/>
+  <!-- Spoon bowl (oval) -->
+  <ellipse cx="339" cy="165" rx="55" ry="75" fill="none" stroke="#1a1a1a" stroke-width="36"/>
+  <!-- Neck -->
+  <rect x="320" y="230" width="38" height="60" rx="4" fill="#1a1a1a"/>
+  <!-- Bottom ball -->
+  <ellipse cx="339" cy="438" rx="22" ry="16" fill="#1a1a1a"/>
+</svg>
