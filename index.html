@@ -12,13 +12,13 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;background:#000;overflow:hidden}
 body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif}
-.app-wrap{width:100%;max-width:430px;height:100svh;margin:0 auto;background:#f2f2f7;display:flex;flex-direction:column;position:relative;overflow:hidden}
-.status-bar{background:#e8944a;padding:env(safe-area-inset-top,44px) 20px 0;min-height:calc(env(safe-area-inset-top,44px));flex-shrink:0}
+.app-wrap{width:100%;max-width:430px;height:100vh;height:100svh;margin:0 auto;background:#f2f2f7;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.status-bar{background:#e8944a;padding:env(safe-area-inset-top,0px) 20px 0;flex-shrink:0}
 .page-header{background:#e8944a;padding:12px 20px 18px;flex-shrink:0}
 .page-header h1{color:#fff;font-size:22px;font-weight:700;margin-bottom:2px}
 .page-header p{color:rgba(255,255,255,0.85);font-size:13px}
-.screen{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 70px)}
-.bottom-nav{position:absolute;bottom:0;left:0;right:0;background:#fff;border-top:0.5px solid #e0e0e0;display:flex;padding-bottom:env(safe-area-inset-bottom,0px);flex-shrink:0;z-index:100}
+.screen{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:80px;min-height:0}
+.bottom-nav{position:sticky;bottom:0;left:0;right:0;background:#fff;border-top:0.5px solid #e0e0e0;display:flex;padding-bottom:env(safe-area-inset-bottom,0px);flex-shrink:0;z-index:100}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;background:none;padding:10px 0 8px}
 .nav-item .nav-icon{font-size:24px;line-height:1}
 .nav-item .nav-label{font-size:10px;color:#8e8e93;font-weight:500}
@@ -26,6 +26,7 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
 .page{display:none}.page.active{display:block}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:16px}
 .cal-cell{background:#fff;border-radius:14px;padding:8px 2px;text-align:center;cursor:pointer;min-height:68px;display:flex;flex-direction:column;align-items:center;gap:2px;border:2px solid transparent;transition:transform 0.1s}
+.cal-cell:hover{background:#f5f5f5}
 .cal-cell:active{transform:scale(0.93)}
 .cal-cell.today{border-color:#e8944a}
 .cal-cell.night{background:#e8f0ff}
@@ -35,7 +36,8 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
 .cal-cell.sun .cday,.cal-cell.sun .cnum{color:#e8944a}
 .cal-cell.sat .cday,.cal-cell.sat .cnum{color:#185fa5}
 .hint-box{margin:0 16px 16px;background:#fff;border-radius:14px;padding:14px 16px;font-size:13px;color:#8e8e93;line-height:1.7}
-.big-btn{margin:0 16px 16px;background:#e8944a;color:#fff;border:none;border-radius:16px;padding:18px;font-size:16px;font-weight:700;width:calc(100% - 32px);cursor:pointer;letter-spacing:0.3px;transition:transform 0.1s,background 0.1s}
+.big-btn{display:block;margin:0 16px 16px;background:#e8944a;color:#fff;border:none;border-radius:16px;padding:18px;font-size:16px;font-weight:700;width:calc(100% - 32px);cursor:pointer;letter-spacing:0.3px;transition:transform 0.1s,background 0.1s}
+.big-btn:hover{background:#d4803a}
 .big-btn:active{transform:scale(0.97);background:#c0703a}
 .menu-scroll{padding:12px 16px;display:flex;flex-direction:column;gap:12px}
 .menu-card{background:#fff;border-radius:18px;overflow:hidden}
@@ -43,11 +45,12 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
 .menu-card-header .mdate{color:#fff;font-size:14px;font-weight:700}
 .night-pill{background:rgba(255,255,255,0.25);color:#fff;font-size:11px;border-radius:10px;padding:2px 9px;font-weight:600}
 .regen-pill{background:rgba(255,255,255,0.2);color:#fff;border:none;border-radius:10px;padding:5px 12px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:600}
-.regen-pill:active{background:rgba(255,255,255,0.35)}
+.regen-pill:hover{background:rgba(255,255,255,0.3)}
 .menu-card-body{padding:12px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .dish-row{display:flex;flex-direction:column;gap:4px}
 .dish-label{font-size:11px;color:#8e8e93;font-weight:600;letter-spacing:0.3px}
 .dish-name{font-size:14px;font-weight:600;cursor:pointer;padding:6px 10px;border-radius:10px;display:inline-block;transition:opacity 0.1s}
+.dish-name:hover{opacity:0.8}
 .dish-name:active{opacity:0.65}
 .dish-name.main{background:#fff3e8;color:#854F0B}
 .dish-name.side{background:#EAF3DE;color:#27500A}
@@ -57,21 +60,21 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
 .shop-group{background:#fff;border-radius:18px;overflow:hidden}
 .shop-group-title{padding:12px 16px 6px;font-size:12px;font-weight:700;color:#8e8e93;letter-spacing:0.8px}
 .shop-items-grid{display:flex;flex-wrap:wrap;gap:7px;padding:0 14px 14px}
-.shop-chip{font-size:14px;padding:7px 16px;background:#f2f2f7;border-radius:22px;cursor:pointer;color:#1c1c1e;border:none;font-family:inherit;font-weight:500;transition:transform 0.1s}
-.shop-chip:active{transform:scale(0.93)}
+.shop-chip{font-size:14px;padding:7px 16px;background:#f2f2f7;border-radius:22px;cursor:pointer;color:#1c1c1e;border:none;font-family:inherit;font-weight:500;transition:all 0.1s}
+.shop-chip:hover{background:#e5e5ea}
 .shop-chip.checked{text-decoration:line-through;opacity:0.35}
 .copy-row{padding:0 16px 16px}
 .copy-btn-sp{width:100%;padding:15px;background:#fff;border:none;border-radius:14px;font-size:15px;color:#555;cursor:pointer;font-family:inherit;font-weight:500}
-.copy-btn-sp:active{background:#f2f2f7}
+.copy-btn-sp:hover{background:#f2f2f7}
 .cp-body{padding:16px}
 .search-bar{display:flex;gap:8px;margin-bottom:20px}
 .search-bar input{flex:1;padding:13px 16px;font-size:15px;border:none;border-radius:14px;background:#fff;color:#1c1c1e;font-family:inherit;outline:none}
 .search-bar button{padding:13px 18px;background:#e8944a;color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
-.search-bar button:active{background:#c0703a}
+.search-bar button:hover{background:#d4803a}
 .cp-section-title{font-size:13px;font-weight:700;color:#8e8e93;margin-bottom:10px;letter-spacing:0.5px}
 .cp-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
 .cp-tag{font-size:14px;padding:8px 16px;background:#fff;border-radius:22px;cursor:pointer;color:#1c1c1e;border:none;font-family:inherit;font-weight:500}
-.cp-tag:active{background:#f2f2f7;transform:scale(0.95)}
+.cp-tag:hover{background:#f2f2f7}
 .cp-hint-box{background:#fff;border-radius:18px;padding:28px;text-align:center;color:#8e8e93;font-size:14px;line-height:1.9}
 .cp-hint-icon{font-size:44px;display:block;margin-bottom:12px}
 .rep-body{padding:12px 16px;display:flex;flex-direction:column;gap:10px}
@@ -80,11 +83,11 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
 .rep-items{padding:0 14px 8px;display:flex;flex-wrap:wrap;gap:7px}
 .rep-chip{font-size:13px;padding:6px 12px;background:#f2f2f7;border-radius:20px;color:#1c1c1e;display:flex;align-items:center;gap:5px}
 .rep-chip .del{background:none;border:none;color:#aaa;cursor:pointer;font-size:15px;padding:0;line-height:1;font-family:inherit}
-.rep-chip .del:active{color:#e24b4a}
+.rep-chip .del:hover{color:#e24b4a}
 .rep-add-row{display:flex;gap:8px;padding:8px 14px 14px;border-top:0.5px solid #f2f2f7}
 .rep-add-row input{flex:1;padding:10px 14px;font-size:14px;border:none;background:#f2f2f7;border-radius:12px;color:#1c1c1e;font-family:inherit;outline:none}
 .rep-add-row button{padding:10px 16px;background:#e8944a;color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
-.rep-add-row button:active{background:#c0703a}
+.rep-add-row button:hover{background:#d4803a}
 </style>
 </head>
 <body>
@@ -93,18 +96,18 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
   <div class="page active" id="page-cal">
     <div class="page-header">
       <h1>📅 夜勤カレンダー</h1>
-      <p>日付をタップして🌛夜勤日を登録</p>
+      <p>日付をクリックして🌛夜勤日を登録</p>
     </div>
     <div class="screen">
       <div class="cal-grid" id="calGrid"></div>
-      <div class="hint-box">🌛 夜勤の日はタップで登録できます<br>📍 夜勤日の献立はどんぶりから自動で選ばれます</div>
+      <div class="hint-box">🌛 夜勤の日は丼ものが自動で選ばれます<br>📍 今日の日付はオレンジ枠で表示されます</div>
       <button class="big-btn" onclick="generateMenu()">✨ 今週の献立を自動生成</button>
     </div>
   </div>
   <div class="page" id="page-menu">
     <div class="page-header">
       <h1>🍽️ 今週の献立</h1>
-      <p>料理名をタップ → クックパッドで検索</p>
+      <p>料理名をクリック → クックパッドで開く</p>
     </div>
     <div class="screen">
       <div class="menu-scroll" id="menuScroll"></div>
@@ -114,7 +117,7 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
   <div class="page" id="page-shop">
     <div class="page-header">
       <h1>🛒 買い物リスト</h1>
-      <p>タップでチェック済みにできます</p>
+      <p>クリックでチェック済みにできます</p>
     </div>
     <div class="screen">
       <div class="shop-body" id="shopBody"></div>
@@ -125,7 +128,7 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
   </div>
   <div class="page" id="page-cp">
     <div class="page-header">
-      <h1>🍳 クックパッド</h1>
+      <h1>🔍 クックパッド</h1>
       <p>レシピをすぐ検索できます</p>
     </div>
     <div class="screen">
@@ -134,138 +137,89 @@ body{font-family:-apple-system,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-s
           <input type="text" id="cpInput" placeholder="料理名を入力..." onkeydown="if(event.key==='Enter')openCookpad()">
           <button onclick="openCookpad()">検索</button>
         </div>
-        <div class="cp-section-title">今週の献立から検索</div>
-        <div class="cp-tags" id="cpTags">
-          <span style="font-size:13px;color:#8e8e93">献立を生成すると表示されます</span>
-        </div>
-        <div class="cp-hint-box">
-          <span class="cp-hint-icon">🍳</span>
-          料理名をタップすると<br>クックパッドのレシピが開きます
-        </div>
+        <div class="cp-section-title">今週の献立からすぐ検索</div>
+        <div class="cp-tags" id="cpTags"><span style="font-size:13px;color:#8e8e93">献立を生成すると表示されます</span></div>
+        <div class="cp-hint-box"><span class="cp-hint-icon">🍳</span>料理名をクリックすると<br>クックパッドのレシピが開きます</div>
       </div>
     </div>
   </div>
   <div class="page" id="page-rep">
     <div class="page-header">
       <h1>📝 レパートリー</h1>
-      <p>料理を追加・管理できます</p>
+      <p>料理を追加・削除できます</p>
     </div>
     <div class="screen">
       <div class="rep-body" id="repBody"></div>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item active" onclick="showPage('cal',this)">
-      <span class="nav-icon">📅</span>
-      <span class="nav-label">カレンダー</span>
-    </button>
-    <button class="nav-item" onclick="showPage('menu',this)">
-      <span class="nav-icon">🍽️</span>
-      <span class="nav-label">献立</span>
-    </button>
-    <button class="nav-item" onclick="showPage('shop',this)">
-      <span class="nav-icon">🛒</span>
-      <span class="nav-label">買い物</span>
-    </button>
-    <button class="nav-item" onclick="showPage('cp',this)">
-      <span class="nav-icon">🍳</span>
-      <span class="nav-label">レシピ</span>
-    </button>
-    <button class="nav-item" onclick="showPage('rep',this)">
-      <span class="nav-icon">📝</span>
-      <span class="nav-label">メニュー</span>
-    </button>
+    <button class="nav-item active" onclick="showPage('cal',this)"><span class="nav-icon">📅</span><span class="nav-label">カレンダー</span></button>
+    <button class="nav-item" onclick="showPage('menu',this)"><span class="nav-icon">🍽️</span><span class="nav-label">献立</span></button>
+    <button class="nav-item" onclick="showPage('shop',this)"><span class="nav-icon">🛒</span><span class="nav-label">買い物</span></button>
+    <button class="nav-item" onclick="showPage('cp',this)"><span class="nav-icon">🔍</span><span class="nav-label">レシピ</span></button>
+    <button class="nav-item" onclick="showPage('rep',this)"><span class="nav-icon">📝</span><span class="nav-label">メニュー</span></button>
   </div>
 </div>
 <script>
-const DAYS=['月','火','水','木','金','土','日'];
+const DAYS=['日','月','火','水','木','金','土'];
 let repertoire={
-  meat:['鶏むね焼き','炒り鶏にんじん','ささみカツ','ハンバーグ','豚しょうが炒め','豚肉巻き','唐揚げ'],
-  fish:['鮭のホイル焼き','鯖の味噌煮','鮭のフライ'],
-  donburi:['カレー','ハヤシライス','チャーハン','親子丼','牛丼','豚丼','炊き込み','オムライス','タコライス'],
-  noodle:['焼きそば','うどん','そば','担々麺','パスタ'],
-  kids:['ミートボール','玉子焼き','鶏むね焼き','唐揚げもどき','ポテト','おにぎり'],
-  side:['ポテトサラダ','ひじきのお浸しの煮物','トマトサラダ','かぼちゃの煮付け','ブロッコリー','サラダ','白和え'],
-  soup:['味噌汁','豚汁','かき卵スープ','コンソメスープ']
+  meat:['唐揚げ','照り焼きチキン','ささみカツ','ハンバーグ','酢豚（鶏）','生姜焼き','餃子'],
+  fish:['鮭のホイル焼き','サバの味噌煮','白身魚のフライ'],
+  donburi:['カレー','ハヤシライス','シチュー','麻婆豆腐','豚丼','親子丼','天丼','オムライス','タコライス'],
+  noodle:['焼きそば','うどん','そば','素麺','パスタ'],
+  kids:['ミートボール','厚揚げ','唐揚げ','磯部焼き','ポテト','おにぎり'],
+  side:['ポテトサラダ','ほうれん草の胡麻和え','トマト','カボチャの煮物','ブロッコリー','サラダ','豆腐'],
+  soup:['味噌汁','ワカメスープ','かき玉汁','コンソメスープ']
 };
-const catLabels={meat:'肉料理',fish:'魚料理',donburi:'丼・汁麺',noodle:'麺類',kids:'子ども用',side:'副菜',soup:'お汁'};
+const catLabels={meat:'肉料理',fish:'魚料理',donburi:'丼・鍋',noodle:'麺類',kids:'子ども',side:'副菜',soup:'お汁'};
 const ingredients={
-  '鶏むね焼き':['鶏もも肉','醤油','みりん','にんにく','片栗粉','生姜'],
-  '炒り鶏にんじん':['鶏もも肉','醤油','砂糖'],
-  'ささみカツ':['鶏もも肉','玉ねぎ','パン粉','味噌','砂糖'],
-  'ハンバーグ':['合いびき肉','玉ねぎ','パン粉','みりん','パン粉'],
-  '豚しょうが炒め':['鶏もも肉','ケチャップ','生姜','豚しゃぶ肉','玉ねぎ','砂糖','醤油','砂糖'],
-  '豚肉巻き':['ロース','片栗粉','醤油','みりん'],
-  '唐揚げ':['鶏もも肉','醤油','砂糖'],
-  '鮭のホイル焼き':['鮭','玉ねぎ','みりん','片栗粉','生姜'],
-  '鯖の味噌煮':['鯖','味噌','砂糖','醤油'],
-  '鮭のフライ':['鮭','玉ねぎ','パン粉','片栗粉'],
-  'カレー':['鶏もも肉','玉ねぎ','にんじん','じゃがいも','カレールー'],
-  'ハヤシライス':['合いびき肉','玉ねぎ','デミグラス','ハヤシルー','トマト缶'],
-  'チャーハン':['ご飯','玉ねぎ','醤油','砂糖'],
-  '親子丼':['鶏もも肉','玉ねぎ','醤油','みりん','片栗粉','卵'],
-  '牛丼':['牛薄切り肉','玉ねぎ','醤油','砂糖'],
-  '豚丼':['ご飯','玉ねぎ','醤油','砂糖'],
-  '炊き込み':['鶏肉','ごぼう','にんじん','醤油','みりん','白だし'],
-  'オムライス':['ご飯','玉ねぎ','醤油','砂糖'],
-  'タコライス':['合いびき肉','玉ねぎ','醤油','砂糖'],
-  '焼きそば':['豚薄切り肉','玉ねぎ','にんじん','もやし','ソース'],
-  'うどん':['うどん','白だし','にんじん','かまぼこ','みりん'],
-  'そば':['そば','だし','みりん','ねぎ'],
-  '担々麺':['ご飯','玉ねぎ','醤油','砂糖'],
-  'パスタ':['パスタ','玉ねぎ','ツナ缶','醤油'],
-  'ミートボール':['合いびき肉','玉ねぎ','パン粉','砂糖'],
-  '玉子焼き':['玉子焼き'],
-  '鮭のフライ(kid)':['鮭','玉ねぎ'],
-  '唐揚げもどき':['拝啓','生姜','醤油'],
-  'ポテト':['じゃがいも','おか','草'],
-  'おにぎり':['ご飯','のり','塩'],
-  'ポテトサラダ':['じゃがいも','きゅうり','玉ねぎ','にんじん','マヨネーズ'],
-  'ひじきのお浸しの煮物':['ひじき','すりごまありがとう','醤油','砂糖'],
-  'トマトサラダ':['トマト','きゅうり','玉ねぎ'],
-  'かぼちゃの煮付け':['かぼちゃ','おか','草'],
-  'ブロッコリー':['ブロッコリー'],
-  'サラダ':['レタス','きゅうり','玉ねぎ','にんじん','ドレッシング','マヨネーズ'],
-  '白和え':['白和え'],
-  '味噌汁':['味噌','だし'],
-  '豚汁':['豚薄切り肉','大根','にんじん','こんにゃく','味噌'],
-  'かき卵スープ':['卵','鶏ガラスープ','片栗粉','ねぎ','生姜','コンソメスープ'],
-  'コンソメスープ':['玉ねぎ','にんじん','じゃがいも','コンソメ']
+  '唐揚げ':['鶏もも肉','醤油','みりん','にんにく','生姜','片栗粉'],
+  '照り焼きチキン':['鶏もも肉','醤油','みりん','砂糖'],
+  'ささみカツ':['鶏ささみ','卵','パン粉','塩','コショウ'],
+  'ハンバーグ':['合いびき肉','玉ねぎ','卵','牛乳','パン粉'],
+  '酢豚（鶏）':['鶏もも肉','ピーマン','人参','玉ねぎ','酢','砂糖','醤油'],
+  '生姜焼き':['豚ロース','生姜','醤油','みりん','砂糖'],
+  '餃子':['豚ひき肉','キャベツ','ニラ','にんにく','餃子の皮','ごま油'],
+  '鮭のホイル焼き':['生鮭','玉ねぎ','エノキ','バター','醤油'],
+  'サバの味噌煮':['サバ','味噌','みりん','砂糖','生姜'],
+  '白身魚のフライ':['白身魚','卵','パン粉','塩','コショウ'],
+  'カレー':['豚肉または鶏肉','じゃがいも','人参','玉ねぎ','カレールー'],
+  'ハヤシライス':['牛肉','玉ねぎ','マッシュルーム','ハヤシルー','トマト缶'],
+  'シチュー':['鶏肉','じゃがいも','人参','玉ねぎ','牛乳','シチュールー'],
+  '麻婆豆腐':['豚ひき肉','豆腐','豆板醤','にんにく','生姜','ごま油'],
+  '豚丼':['豚バラ肉','玉ねぎ','醤油','みりん','砂糖'],
+  '親子丼':['鶏もも肉','玉ねぎ','卵','だし','醤油','みりん'],
+  '天丼':['海老','春野菜','天ぷら粉','だし','みりん','醤油'],
+  'オムライス':['鶏もも肉','玉ねぎ','ケチャップ','卵','バター','ご飯'],
+  'タコライス':['牛豚ひき肉','レタス','トマト','チーズ','タコシーズニング'],
+  '焼きそば':['豚バラ肉','キャベツ','もやし','焼きそば麺','ソース'],
+  'うどん':['うどん','だし','醤油','みりん','ネギ'],
+  'そば':['そば','だし','醤油','みりん','ネギ'],
+  '素麺':['素麺','だし','醤油','みりん','ネギ','生姜'],
+  'パスタ':['パスタ','ベーコン','玉ねぎ','にんにく','オリーブオイル'],
+  'ポテトサラダ':['じゃがいも','きゅうり','ハム','マヨネーズ','塩'],
+  'ほうれん草の胡麻和え':['ほうれん草','すりごま','醤油','砂糖','みりん'],
+  'トマト':['トマト'],'カボチャの煮物':['かぼちゃ','だし','醤油','みりん','砂糖'],
+  'ブロッコリー':['ブロッコリー'],'サラダ':['レタス','きゅうり','トマト','ドレッシング'],'豆腐':['豆腐'],
+  '味噌汁':['味噌','だし','わかめ','豆腐','ネギ'],'ワカメスープ':['わかめ','鶏がらスープ','ごま油','ネギ'],
+  'かき玉汁':['卵','だし','醤油','塩','片栗粉','ネギ'],'コンソメスープ':['玉ねぎ','人参','コンソメ','塩','コショウ'],
+  'ミートボール':['合いびき肉','パン粉','卵','ケチャップ'],'厚揚げ':['厚揚げ','醤油','みりん','だし'],
+  '磯部焼き':['切り餅','海苔','醤油'],'ポテト':['じゃがいも','塩','油'],'おにぎり':['ご飯','塩','海苔','好みの具']
 };
 const shopCategories={
-  '肉類':['鶏もも肉','豚薄切り肉','豚しゃぶ肉','牛薄切り肉','合いびき肉','ロース','鮭'],
-  '魚類':['片栗粉','玉ねぎ','鯖'],
-  '野菜':['玉ねぎ','じゃがいも','にんじん','きゅうり','ごぼう','もやし','ひじき','かぼちゃ','レタス','ねぎ','きゅうり','トマト','かまぼこ','大根','ブロッコリー','玉子焼き'],
-  '豆腐・卵':['卵','玉ねぎ','白だし'],
-  '乾物・缶詰':['パン粉','生姜','ツナ缶','デミグラス','ハヤシルー','カレールー','鶏ガラスープ','コンソメ'],
-  '調味料':['醤油','みりん','砂糖','味噌','マヨネーズ','ドレッシング','ソース','白だし','コンソメスープ','ケチャップ'],
-  'その他':['にんにく','おか','草','のり','塩','パスタ','そば','うどん','ごはん','ご飯','白だし','のり','生姜','砂糖']
+  '肉類':['鶏もも肉','豚バラ肉','豚ロース','豚ひき肉','合いびき肉','牛肉','牛豚ひき肉','鶏ささみ','海老'],
+  '魚類':['生鮭','サバ','白身魚'],
+  '野菜':['玉ねぎ','人参','じゃがいも','キャベツ','ニラ','ピーマン','ほうれん草','かぼちゃ','ブロッコリー','レタス','きゅうり','トマト','もやし','ネギ','春野菜','エノキ','マッシュルーム'],
+  '豆腐・卵':['豆腐','厚揚げ','卵'],
+  '乾物・缶詰':['わかめ','海苔','トマト缶','パスタ','そば','うどん','素麺','焼きそば麺','餃子の皮','天ぷら粉','パン粉','切り餅'],
+  '調味料':['醤油','みりん','砂糖','塩','コショウ','味噌','酢','ごま油','ケチャップ','マヨネーズ','豆板醤','カレールー','ハヤシルー','シチュールー','コンソメ','鶏がらスープ','オリーブオイル','タコシーズニング','ソース','だし','片栗粉','牛乳','バター','すりごま','ドレッシング'],
+  'その他':['にんにく','生姜','ハム','ベーコン','チーズ','ご飯','好みの具']
 };
-function saveData(){
-  try{
-    localStorage.setItem('kondate_nights',JSON.stringify([...nightDays]));
-    localStorage.setItem('kondate_rep',JSON.stringify(repertoire));
-    localStorage.setItem('kondate_checked',JSON.stringify([...shopChecked]));
-  }catch(e){}
-}
-function loadData(){
-  try{
-    const n=localStorage.getItem('kondate_nights');
-    if(n) nightDays=new Set(JSON.parse(n));
-    const r=localStorage.getItem('kondate_rep');
-    if(r) repertoire=JSON.parse(r);
-    const c=localStorage.getItem('kondate_checked');
-    if(c) shopChecked=new Set(JSON.parse(c));
-  }catch(e){}
-}
+function saveData(){try{localStorage.setItem('kondate_nights',JSON.stringify([...nightDays]));localStorage.setItem('kondate_rep',JSON.stringify(repertoire));localStorage.setItem('kondate_checked',JSON.stringify([...shopChecked]));}catch(e){}}
+function loadData(){try{const n=localStorage.getItem('kondate_nights');if(n)nightDays=new Set(JSON.parse(n));const r=localStorage.getItem('kondate_rep');if(r)repertoire=JSON.parse(r);const c=localStorage.getItem('kondate_checked');if(c)shopChecked=new Set(JSON.parse(c));}catch(e){}}
 let nightDays=new Set(),currentMenu=[],shopChecked=new Set();
 loadData();
-function getWeekDates(){
-  const today=new Date(),dow=today.getDay();
-  const mon=new Date(today);
-  mon.setDate(today.getDate()-dow+(dow===0?-6:1));
-  return Array.from({length:7},(_,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return d;});
-}
+function getWeekDates(){const today=new Date(),dow=today.getDay();const mon=new Date(today);mon.setDate(today.getDate()-dow+(dow===0?-6:1));return Array.from({length:7},(_,i)=>{const d=new Date(mon);d.setDate(mon.getDate()+i);return d;});}
 function renderCalendar(){
   const grid=document.getElementById('calGrid'),dates=getWeekDates(),today=new Date();
   grid.innerHTML='';
@@ -273,11 +227,8 @@ function renderCalendar(){
     const key=d.toDateString(),isToday=d.toDateString()===today.toDateString(),isNight=nightDays.has(key),dow=d.getDay();
     const cell=document.createElement('div');
     cell.className='cal-cell'+(dow===0?' sun':dow===6?' sat':'')+(isNight?' night':'')+(isToday?' today':'');
-    cell.innerHTML=`<span class="cday">${DAYS[dow===0?6:dow-1]}</span><span class="cnum">${d.getDate()}</span><span class="cicon">${isNight?'🌛':isToday?'📍':''}</span>`;
-    cell.onclick=()=>{
-      if(nightDays.has(key))nightDays.delete(key);else nightDays.add(key);
-      saveData();renderCalendar();
-    };
+    cell.innerHTML='<span class="cday">'+DAYS[dow]+'</span><span class="cnum">'+d.getDate()+'</span><span class="cicon">'+(isNight?'🌛':isToday?'📍':'')+'</span>';
+    cell.onclick=()=>{if(nightDays.has(key))nightDays.delete(key);else nightDays.add(key);saveData();renderCalendar();};
     grid.appendChild(cell);
   });
 }
@@ -297,36 +248,19 @@ function generateMenu(){
   showPage('menu',document.querySelectorAll('.nav-item')[1]);
 }
 function regenDay(idx){
-  const d=currentMenu[idx];
-  const uM=currentMenu.filter((_,i)=>i!==idx).map(m=>m.main);
+  const d=currentMenu[idx],uM=currentMenu.filter((_,i)=>i!==idx).map(m=>m.main);
   const pool=d.isNight?repertoire.donburi:[...repertoire.meat,...repertoire.fish,...repertoire.donburi,...repertoire.noodle];
-  d.main=pick(pool,uM);
-  d.side=pick(repertoire.side,currentMenu.filter((_,i)=>i!==idx).map(m=>m.side));
-  d.soup=pick(repertoire.soup,currentMenu.filter((_,i)=>i!==idx).map(m=>m.soup));
-  d.kid=pick(repertoire.kids,currentMenu.filter((_,i)=>i!==idx).map(m=>m.kid));
+  d.main=pick(pool,uM);d.side=pick(repertoire.side,currentMenu.filter((_,i)=>i!==idx).map(m=>m.side));
+  d.soup=pick(repertoire.soup,currentMenu.filter((_,i)=>i!==idx).map(m=>m.soup));d.kid=pick(repertoire.kids,currentMenu.filter((_,i)=>i!==idx).map(m=>m.kid));
   renderMenu();renderShopList();updateCpTags();
 }
 function renderMenu(){
-  const scroll=document.getElementById('menuScroll'),today=new Date();
-  scroll.innerHTML='';
+  const scroll=document.getElementById('menuScroll'),today=new Date();scroll.innerHTML='';
   currentMenu.forEach((m,i)=>{
     const dow=m.date.getDay(),isToday=m.date.toDateString()===today.toDateString();
-    const dayStr=`${m.date.getMonth()+1}/${m.date.getDate()}（${DAYS[dow===0?6:dow-1]}）${isToday?' 📍今日':''}`;
+    const dayStr=m.date.getMonth()+1+'/'+m.date.getDate()+'（'+DAYS[dow]+'）'+(isToday?' 📍今日':'');
     const card=document.createElement('div');card.className='menu-card';
-    card.innerHTML=`
-      <div class="menu-card-header">
-        <span class="mdate">${dayStr}</span>
-        <div style="display:flex;gap:6px;align-items:center">
-          ${m.isNight?'<span class="night-pill">🌛夜勤</span>':''}
-          <button class="regen-pill" onclick="regenDay(${i})">↺ 変更</button>
-        </div>
-      </div>
-      <div class="menu-card-body">
-        <div class="dish-row"><span class="dish-label">主菜</span><span class="dish-name main" onclick="searchCookpad('${m.main}')">${m.main}</span></div>
-        <div class="dish-row"><span class="dish-label">副菜</span><span class="dish-name side" onclick="searchCookpad('${m.side}')">${m.side}</span></div>
-        <div class="dish-row"><span class="dish-label">お汁</span><span class="dish-name soup" onclick="searchCookpad('${m.soup}')">${m.soup}</span></div>
-        <div class="dish-row"><span class="dish-label">子ども用</span><span class="dish-name kids" onclick="searchCookpad('${m.kid}')">${m.kid}</span></div>
-      </div>`;
+    card.innerHTML='<div class="menu-card-header"><span class="mdate">'+dayStr+'</span><div style="display:flex;gap:6px;align-items:center">'+(m.isNight?'<span class="night-pill">🌛夜勤</span>':'')+'<button class="regen-pill" onclick="regenDay('+i+')">↺ 変える</button></div></div><div class="menu-card-body"><div class="dish-row"><span class="dish-label">主食</span><span class="dish-name main" onclick="searchCookpad(''+m.main+'')">'+m.main+'</span></div><div class="dish-row"><span class="dish-label">副菜</span><span class="dish-name side" onclick="searchCookpad(''+m.side+'')">'+m.side+'</span></div><div class="dish-row"><span class="dish-label">お汁</span><span class="dish-name soup" onclick="searchCookpad(''+m.soup+'')">'+m.soup+'</span></div><div class="dish-row"><span class="dish-label">子ども</span><span class="dish-name kids" onclick="searchCookpad(''+m.kid+'')">'+m.kid+'</span></div></div>';
     scroll.appendChild(card);
   });
 }
@@ -334,71 +268,25 @@ function renderShopList(){
   const allDishes=currentMenu.flatMap(m=>[m.main,m.side,m.soup,m.kid]);
   const allIng=new Set();allDishes.forEach(d=>(ingredients[d]||[]).forEach(i=>allIng.add(i)));
   const byCat={};Object.keys(shopCategories).forEach(c=>{byCat[c]=[];});
-  allIng.forEach(ing=>{
-    let placed=false;
-    for(const[cat,items] of Object.entries(shopCategories)){if(items.includes(ing)){byCat[cat].push(ing);placed=true;break;}}
-    if(!placed){if(!byCat['その他'])byCat['その他']=[];byCat['その他'].push(ing);}
-  });
+  allIng.forEach(ing=>{let placed=false;for(const[cat,items]of Object.entries(shopCategories)){if(items.includes(ing)){byCat[cat].push(ing);placed=true;break;}}if(!placed){if(!byCat['その他'])byCat['その他']=[];byCat['その他'].push(ing);}});
   const body=document.getElementById('shopBody');body.innerHTML='';
-  Object.entries(byCat).forEach(([cat,items])=>{
-    if(!items.length)return;
-    const g=document.createElement('div');g.className='shop-group';
-    g.innerHTML=`<div class="shop-group-title">${cat}</div><div class="shop-items-grid">${items.map(it=>`<button class="shop-chip${shopChecked.has(it)?' checked':''}" onclick="toggleShop('${it}',this)">${it}</button>`).join('')}</div>`;
-    body.appendChild(g);
-  });
+  Object.entries(byCat).forEach(([cat,items])=>{if(!items.length)return;const g=document.createElement('div');g.className='shop-group';g.innerHTML='<div class="shop-group-title">'+cat+'</div><div class="shop-items-grid">'+items.map(it=>'<button class="shop-chip'+(shopChecked.has(it)?' checked':'')+'" onclick="toggleShop(''+it+'',this)">'+it+'</button>').join('')+'</div>';body.appendChild(g);});
 }
-function toggleShop(item,el){
-  if(shopChecked.has(item))shopChecked.delete(item);else shopChecked.add(item);
-  el.classList.toggle('checked');
-  saveData();
-}
-function copyShopList(){
-  const allDishes=currentMenu.flatMap(m=>[m.main,m.side,m.soup,m.kid]);
-  const allIng=new Set();allDishes.forEach(d=>(ingredients[d]||[]).forEach(i=>allIng.add(i)));
-  const text='【今週の買い物リスト】\n'+[...allIng].filter(i=>!shopChecked.has(i)).join('\n');
-  if(navigator.share){navigator.share({text});}
-  else{navigator.clipboard.writeText(text).then(()=>alert('コピーしました！'));}
-}
+function toggleShop(item,el){if(shopChecked.has(item))shopChecked.delete(item);else shopChecked.add(item);el.classList.toggle('checked');saveData();}
+function copyShopList(){const allDishes=currentMenu.flatMap(m=>[m.main,m.side,m.soup,m.kid]);const allIng=new Set();allDishes.forEach(d=>(ingredients[d]||[]).forEach(i=>allIng.add(i)));const text='【今週の買い物リスト】
+'+[...allIng].filter(i=>!shopChecked.has(i)).join('
+');if(navigator.share){navigator.share({text});}else{navigator.clipboard.writeText(text).then(()=>alert('コピーしました！'));}}
 function searchCookpad(dish){window.open('https://cookpad.com/search/'+encodeURIComponent(dish),'_blank');}
 function openCookpad(){const q=document.getElementById('cpInput').value.trim();if(q)searchCookpad(q);}
-function updateCpTags(){
-  const tags=document.getElementById('cpTags');
-  const dishes=[...new Set(currentMenu.flatMap(m=>[m.main,m.side,m.soup,m.kid]))];
-  tags.innerHTML=dishes.map(d=>`<button class="cp-tag" onclick="searchCookpad('${d.replace(/'/g,"\\'")}'">${d}</button>`).join('');
-}
+function updateCpTags(){const tags=document.getElementById('cpTags');const dishes=[...new Set(currentMenu.flatMap(m=>[m.main,m.side,m.soup,m.kid]))];tags.innerHTML=dishes.map(d=>'<button class="cp-tag" onclick="searchCookpad(''+d.replace(/'/g,"\'")+'')">' +d+'</button>').join('');}
 function renderRepertoire(){
   const body=document.getElementById('repBody');body.innerHTML='';
-  Object.entries(catLabels).forEach(([key,label])=>{
-    const g=document.createElement('div');g.className='rep-group';
-    g.innerHTML=`
-      <div class="rep-group-title">${label}</div>
-      <div class="rep-items" id="ri-${key}">${repertoire[key].map(item=>`<span class="rep-chip">${item}<button class="del" onclick="delRep('${key}','${item.replace(/'/g,"\\'")}')">×</button></span>`).join('')}</div>
-      <div class="rep-add-row">
-        <input type="text" placeholder="新しい料理を追加..." id="ai-${key}" onkeydown="if(event.key==='Enter')addRep('${key}')">
-        <button onclick="addRep('${key}')">追加</button>
-      </div>`;
-    body.appendChild(g);
-  });
+  Object.entries(catLabels).forEach(([key,label])=>{const g=document.createElement('div');g.className='rep-group';g.innerHTML='<div class="rep-group-title">'+label+'</div><div class="rep-items" id="ri-'+key+'">'+repertoire[key].map(item=>'<span class="rep-chip">'+item+'<button class="del" onclick="delRep(''+key+'',''+item.replace(/'/g,"\'")+'')">×</button></span>').join('')+'</div><div class="rep-add-row"><input type="text" placeholder="新しい料理を追加..." id="ai-'+key+'" onkeydown="if(event.key==='Enter')addRep(''+key+'')"><button onclick="addRep(''+key+'')">追加</button></div>';body.appendChild(g);});
 }
-function addRep(key){
-  const inp=document.getElementById('ai-'+key),val=inp.value.trim();
-  if(!val||repertoire[key].includes(val))return;
-  repertoire[key].push(val);inp.value='';
-  saveData();renderRepertoire();
-}
-function delRep(key,item){
-  repertoire[key]=repertoire[key].filter(x=>x!==item);
-  saveData();renderRepertoire();
-}
-function showPage(id,btn){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  btn.classList.add('active');
-}
-renderCalendar();
-generateMenu();
-renderRepertoire();
+function addRep(key){const inp=document.getElementById('ai-'+key),val=inp.value.trim();if(!val||repertoire[key].includes(val))return;repertoire[key].push(val);inp.value='';saveData();renderRepertoire();}
+function delRep(key,item){repertoire[key]=repertoire[key].filter(x=>x!==item);saveData();renderRepertoire();}
+function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');btn.classList.add('active');}
+renderCalendar();generateMenu();renderRepertoire();
 </script>
 </body>
 </html>
